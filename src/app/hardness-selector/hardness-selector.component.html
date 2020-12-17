@@ -1,0 +1,85 @@
+<div class="row mt-3">
+  <!-- <div class="col"></div> -->
+  <div class="col text-center text-light">
+    <h1 class="display-1 font-weight-bold lh-1">EggTimer</h1>
+    <!-- <h1 class="display-1 font-weight-bold lh-1">Timer</h1> -->
+  </div>
+  <!-- <div class="col"></div> -->
+</div>
+
+<div class="row my-1" [@showInput]="inputShow">
+  <div class="col"></div>
+  <div class="col-10 text-center">
+    <input type="text" id="locationInput" placeholder="Choose location" class="text-center text-light" [(ngModel)]="location.location">
+    <div class="d-flex justify-content-around">
+      <button type="button" class="mt-2 btn btn-outline-light w-25" (click)="searchLocation()">Search</button>
+      <button type="button" class="mt-2 btn btn-outline-light w-25" (click)="skipLocation()">skip</button>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
+
+
+
+<div class="row">
+  <div class="col p-0"></div>
+  <div class="col p-0">
+    <img id="egg" src="../../assets/images/egg.png" class="mx-auto" [ngClass]="{'smallMargin': inputShow === 'show'}" [@slideUp] (@slideUp.done)="slideUpDone()"  [@fallDown]="eggFall" (@fallDown.done)="showSearchInput()" [@fadeEgg]="eggShow" (@fadeEgg.done)="showMain()">
+  </div>
+  <div class="col p-0"></div>
+</div>
+
+<div class="row" [@fadeButtons]="animateShow" (@fadeButtons.done)="fadeButtonsDone()">
+  <div class="container text-center mt-1" id="optionsPlaceholder">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col px-1">
+        <label class="btn btn-outline-light" for="option1" (click)='eggFinishingTemp = "soft"' [attr.checked]='eggFinishingTemp === "soft"'>
+          <span class="font-weight-bold">Soft</span>
+          boiled
+          <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+        </label>
+      </div>
+      <div class="col px-1">
+        <label class="btn btn-outline-light" for="option2" (click)='eggFinishingTemp = "medium"' [attr.checked]='eggFinishingTemp === "medium"'>
+            <span class="font-weight-bold">Medium</span>
+            boiled
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+        </label>
+      </div>
+      <div class="col px-1">
+        <label class="btn btn-outline-light" for="option3" (click)='eggFinishingTemp = "hard"' [attr.checked]='eggFinishingTemp === "hard"'>
+          <span class="font-weight-bold">Hard</span>
+          boiled
+          <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+        </label>
+      </div>
+      <div class="col-1"></div>
+    </div>
+</div>
+  <button type="button" class="mx-auto mt-2 btn btn-outline-light" (click)="proceedToLocation()">Choose</button>
+</div>
+
+<div id="locationResults" *ngIf="locationsRecieved" class="mx-auto" [@slideUpLocations]="showLocations" (@slideUpLocations.done)=" proceedToMain()">
+  <ul class="m-0 px-1 py-2 text-center">
+    <li *ngFor="let town of locationResults | slice:0:5">
+      <button type="button" class="mx-auto mt-2 btn btn-outline-light" (click)="getElevations({lat: town.geometry.lat, lng: town.geometry.lng})">
+        {{ town.formatted }}</button>
+    </li>
+  </ul>
+</div>
+
+<div class="w-100 d-flex justify-content-center">
+<div id="rollingTimer" class="p-2" *ngIf="rollingTimer" [@slideDownNotification]="slideDownNotification">
+  <div class="m-0 w-100 text-center">
+      <p>A timer was already started</p>
+  </div>
+    <div class="m-0 w-100 text-center">
+      <h2>{{min}}:{{sec}}</h2>
+    </div>
+    <div class="m-0 w-100 d-flex justify-content-around">
+      <button class="btn btn-outline-success" (click)="gotoTimer()">go to timer</button>
+      <button class="btn btn-outline-danger" (click)="dismissNotification()">dismiss</button>
+    </div>
+  </div>
+</div>

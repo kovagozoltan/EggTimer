@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  background: #40a7e9;
+  padding: 0;
+  margin: 0;
+  max-width: 425px;
+}
+html {
+  margin: 0;
+  height: 0;
+}
+
+.display-1 {
+  line-height: 0.8;
+  font-size: 4em;
+}
+
+label[checked="true"] {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+#optionsPlaceholder input {
+  /* display: none; */
+}
+
+#optionsPlaceholder label {
+  width: 100%;
+  height: 100%;
+}
+
+#optionsPlaceholder label span {
+  font-size: 1.5em;
+}
+
+#optionsPlaceholder .row {
+  height: 5em;
+}
+
+input[type='radio'] {
+  display:none;
+}

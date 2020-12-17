@@ -1,0 +1,50 @@
+#egg {
+  display: block;
+}
+
+.top {
+  height: 7em;
+}
+
+#locationInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  font-size: 2em;
+}
+
+#locationInput:focus {
+  outline: none;
+}
+
+.smallMargin {
+  margin-top: 0% !important;
+}
+
+#locationResults {
+  position: fixed;
+  bottom: 0;
+  background-color: #40a7e9;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+#locationResults ul {
+  list-style: none;
+}
+
+#rollingTimer {
+  top: 5px;
+  position: fixed;
+  max-width: 400px;
+  width: 80%;
+  /* margin-left: -40%;
+  left: 50%; */
+  border-radius: 5px;
+  background: white;
+  /* background-color: rgba(255,255,255, 0.9); */
+}

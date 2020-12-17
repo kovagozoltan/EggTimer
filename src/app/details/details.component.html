@@ -1,0 +1,129 @@
+
+<div class="row mt-3">
+  <!-- <div class="col"></div> -->
+  <div class="col text-center text-light">
+    <h1 class="display-1 font-weight-bold lh-1">EggTimer</h1>
+    <!-- <h1 class="display-1 font-weight-bold lh-1">Timer</h1> -->
+  </div>
+  <!-- <div class="col"></div> -->
+</div>
+
+<div *ngIf="timer" class="text-center mt-5">
+  <h1 id="mainTimer">{{min}}:{{sec}}</h1>
+  <div>
+    <button *ngIf="!timerStarted" type="button" class="mx-auto mt-2 btn btn-outline-light" (click)="startTimer(); timerStarted = 'true'">Start</button>
+    <button *ngIf="timerStarted" type="button" class="mx-auto mt-2 btn btn-danger" (click)="resetTimer()">Reset</button>
+  </div>
+  <!-- <div class="row mx-3 my-4">
+    <div class="title">
+      <p class="text-light font-weight-bold">Boiling tip</p>
+    </div>
+  </div> -->
+</div>
+
+<div *ngIf="!timer">
+  <div class="row mx-3 mt-4">
+    <div class="title">
+      <p class="text-light font-weight-bold m-0">Egg temperature</p>
+    </div>
+    <div class="row m-0 w-100" data-toggle="buttons">
+      <div class="col text-center">
+        <label class="btn btn-outline-light w-100" for="roomTemp" (click)='eggStartingTemp = "room"; calculateTime()'
+          [attr.checked]='eggStartingTemp === "room"'>
+          <span class="font-weight-bold">room temp</span>
+          <input type="radio" class="btn-check" name="eggTemp" id="roomTemp" autocomplete="off">
+        </label>
+      </div>
+      <div class="col text-center">
+        <label class="btn btn-outline-light w-100" for="fridgeTemp"
+          (click)='eggStartingTemp = "fridge"; calculateTime()' [attr.checked]='eggStartingTemp === "fridge"'>
+          <span class="font-weight-bold">fridge temp</span>
+          <input type="radio" class="btn-check" name="eggTemp" id="fridgeTemp" autocomplete="off">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-3 mt-2">
+    <div class="title">
+      <p class="text-light font-weight-bold m-0">Egg size</p>
+    </div>
+    <div class="row m-0 w-100 d-flex justify-content-around">
+      <!-- <div class="col text-center"> -->
+        <label class="btn btn-outline-light w-25 px-0" for="small" (click)='eggSize = "small"; calculateTime()'
+          [attr.checked]='eggSize === "small"'>
+          <span class="font-weight-bold">small</span>
+          <input type="radio" class="btn-check" name="eggSize" id="small" autocomplete="off">
+        </label>
+      <!-- </div>
+      <div class="col text-center"> -->
+        <label class="btn btn-outline-light w-25 px-0" for="medium" (click)='eggSize = "medium"; calculateTime()'
+          [attr.checked]='eggSize === "medium"'>
+          <span class="font-weight-bold">medium</span>
+          <input type="radio" class="btn-check" name="eggSize" id="medium" autocomplete="off">
+        </label>
+      <!-- </div>
+      <div class="col text-center"> -->
+        <label class="btn btn-outline-light w-25 px-0" for="large" (click)='eggSize = "large"; calculateTime()'
+          [attr.checked]='eggSize === "large"'>
+          <span class="font-weight-bold">large</span>
+          <input type="radio" class="btn-check" name="eggSize" id="large" autocomplete="off">
+        </label>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container text-center mt-2" id="optionsPlaceholder">
+      <div class="title">
+        <p class="text-light font-weight-bold text-left ml-3 mb-0">Egg hardness</p>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col px-1">
+          <label class="btn btn-outline-light" for="option1" (click)='eggFinishingTemp = "soft"; calculateTime()'
+            [attr.checked]='eggFinishingTemp === "soft"'>
+
+            <span class="font-weight-bold">Soft</span>
+            boiled
+            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off">
+
+          </label>
+        </div>
+        <div class="col px-1">
+          <label class="btn btn-outline-light" for="option2" (click)='eggFinishingTemp = "medium"; calculateTime()'
+            [attr.checked]='eggFinishingTemp === "medium"'>
+
+            <span class="font-weight-bold">Medium</span>
+            boiled
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+
+          </label>
+        </div>
+        <div class="col px-1">
+          <label class="btn btn-outline-light" for="option3" (click)='eggFinishingTemp = "hard"; calculateTime()'
+            [attr.checked]='eggFinishingTemp === "hard"'>
+
+            <span class="font-weight-bold">Hard</span>
+            boiled
+            <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+
+          </label>
+        </div>
+        <div class="col-1"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mx-3 mt-2">
+    <div class="title">
+      <p class="text-light font-weight-bold text-left">Estimated boiling time</p>
+    </div>
+    <div id="estimatedTime" class="pl-2 w-100" (click)="showMainTimer()">
+      <h1 class="w-50">{{min}}:{{sec}}</h1>
+      <button>Go!</button>
+    </div>
+    <button type="button" class="mx-auto mt-2 btn btn-danger" (click)="resetTimer()">Reset</button>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+.title {
+  width: 100%;
+}
+
+#estimatedTime {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#estimatedTime button {
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  font-weight: bold;
+  font-size: 1.2em;
+  border-radius: 0 10px 10px 0;
+  background-color: #40a7e9;
+}
+
+#estimatedTime button:focus {
+  outline:none;
+}
+
+#mainTimer {
+  font-size: 8em;
+  font-weight: bold;
+}
+
+
