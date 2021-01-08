@@ -35,6 +35,8 @@ export class HardnessSelectorComponent implements OnInit {
   min; // timer minutes
   sec; // timer seconds
 
+  diplaySpinner = false; // show or hide loading spinner for locations
+
   constructor( private ROUTER: Router, private DATASERVICE: DataService, private LOCATIONSERVICE: LocationService) { }
 
   ngOnInit() {
@@ -108,11 +110,17 @@ export class HardnessSelectorComponent implements OnInit {
 
   searchLocation() {
     if(this.location.location.length){
+      this.diplaySpinner = true;
       this.LOCATIONSERVICE.getLocation(this.location).subscribe( (data: any) => {
-        this.locationResults = data.results;
-        this.locationsRecieved = true;
-        if(this.locationsRecieved){
-          this.showLocations = 'show';
+        console.log('subscribed')
+        if(data) {
+          console.log('data')
+          this.locationResults = data.results;
+          this.locationsRecieved = true;
+          if(this.locationsRecieved){
+            this.diplaySpinner = false;
+            this.showLocations = 'show';
+          }
         }
       })
     }
@@ -122,7 +130,6 @@ export class HardnessSelectorComponent implements OnInit {
     this.LOCATIONSERVICE.getElevation(geometry).subscribe( (data: any) => {
       this.dataToSend.push({elevation: data.elevations[0].elevation})
       this.showLocations = 'hidden';
-      // this.proceedToMain()
     })
   }
 

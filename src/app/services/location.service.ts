@@ -8,10 +8,10 @@ export class LocationService {
   constructor(private HTTP: HttpClient) {}
 
   getLocation(data){
-    return this.HTTP.post('http://eggtimer-env.eba-tmsnznjj.eu-west-3.elasticbeanstalk.com/location', data)
+    return this.HTTP.post('https://egg-timer-kz.herokuapp.com/location', data)
   }
 
   getElevation(data){
-    return this.HTTP.post('http://eggtimer-env.eba-tmsnznjj.eu-west-3.elasticbeanstalk.com/elevation', data)
+    return this.HTTP.post('https://egg-timer-kz.herokuapp.com/elevation', data)
   }
 }

@@ -87,7 +87,7 @@ export const fadeEgg =
   export const slideUpLocations =
   trigger('slideUpLocations', [
     state('hidden', style({
-      bottom: '-20%'
+      bottom: '-100%'
     })),
     state('show', style({
       bottom: '0'
@@ -101,7 +101,7 @@ export const fadeEgg =
     transition('show => hidden', [
       animate('1s', keyframes([
         style({ bottom: '0%', offset: 0 }),
-        style({ bottom: '-20%', offset: 1 })
+        style({ bottom: '-100%', offset: 1 })
       ]))
     ])
   ])
